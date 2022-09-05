@@ -1,7 +1,19 @@
 package ru.netology.radio;
+
 public class Radio {
-    public int currentStationNumber;
-    public int currentSoundVolume;
+    protected int maxStation;
+    protected int currentStationNumber;
+    protected int currentSoundVolume;
+
+
+
+    public Radio() {
+        this.maxStation = 9;
+    }
+
+    public Radio(int amountNumberStation) {
+        this.maxStation = amountNumberStation - 1;
+    }
 
     public int getCurrentSoundVolume() {
         return currentSoundVolume;
@@ -10,24 +22,25 @@ public class Radio {
     public void setCurrentSoundVolume(int currentSoundVolume) {
         if (currentSoundVolume < 0) {
             currentSoundVolume = 0;
-        }if (currentSoundVolume > 10) {
-            currentSoundVolume = 10;
+        }
+        if (currentSoundVolume > 100) {
+            currentSoundVolume = 100;
         }
         this.currentSoundVolume = currentSoundVolume;
     }
 
     public void increaseVolume() {
-        if (currentSoundVolume < 10) {
-            currentSoundVolume ++;
-        }else {
-            currentSoundVolume = 10;
+        if (currentSoundVolume < 100) {
+            currentSoundVolume++;
+        } else {
+            currentSoundVolume = 100;
         }
     }
 
     public void decreaseVolume() {
         if (currentSoundVolume > 0) {
-            currentSoundVolume --;
-        }else {
+            currentSoundVolume--;
+        } else {
             currentSoundVolume = 0;
         }
     }
@@ -39,15 +52,16 @@ public class Radio {
     public void setCurrentStationNumber(int currentStationNumber) {
         if (currentStationNumber < 0) {
             return;
-        }if (currentStationNumber > 9) {
+        }
+        if (currentStationNumber > maxStation) {
             return;
         }
         this.currentStationNumber = currentStationNumber;
     }
 
     public void next() {
-        if (currentStationNumber < 9) {
-            currentStationNumber ++;
+        if (currentStationNumber < maxStation) {
+            currentStationNumber++;
         } else {
             currentStationNumber = 0;
         }
@@ -55,9 +69,9 @@ public class Radio {
 
     public void prev() {
         if (currentStationNumber > 0) {
-            currentStationNumber --;
+            currentStationNumber--;
         } else {
-            currentStationNumber = 9;
+            currentStationNumber = maxStation;
         }
     }
 
